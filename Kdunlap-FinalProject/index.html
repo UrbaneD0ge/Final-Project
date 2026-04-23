@@ -17,18 +17,13 @@
 
       <!-- The Map component fits to the size of the parent element -->
       <!-- The basemap, extent, zoom and more are provided by the Web Map (item-id) -->
-      <arcgis-map item-id="dd4b2f25487d4a37a45093ba6acd026d">
+      <arcgis-map item-id="d79e91bd5f9d4bcdb05292a902d1c472">
         <arcgis-zoom slot="top-left"></arcgis-zoom>
-        <arcgis-search slot="top-right"></arcgis-search>
-        <arcgis-expand slot="bottom-left">
-          <arcgis-legend></arcgis-legend>
-        </arcgis-expand>
-        <!-- A Feature Layer in the Web Map has an associated chart (layer-item-id) -->
-        <arcgis-chart
-          layer-item-id="b1717962dab247ad93eaca257b32fe02"
-          chart-index="1"
-          slot="bottom-right"
-        ></arcgis-chart>
+        <arcgis-directions slot="top-right"
+        use-default-route-layer
+        ></arcgis-directions>
+        <arcgis-search slot="bottom-right"></arcgis-search>
+
       </arcgis-map>
     </calcite-shell>
     <script type="module" src="/src/main.ts"></script>
