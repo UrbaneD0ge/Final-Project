@@ -34,16 +34,13 @@ const directionsElement = document.querySelector("arcgis-directions");
 
 // create a RouteLayer from a portal item
 const MARTAroutes = new RouteLayer({
-  portalItem: {
-    // autocasts as new PortalItem()
-    id: "19683b89f5e74a69afcda912c96ff1a0", // MARTA Routes
-  },
+  id: "19683b89f5e74a69afcda912c96ff1a0"
 });
 
 viewElement?.addEventListener("arcgisViewReadyChange", () => {
   // Use metadata from the Web Map to populate the header
-  const map = viewElement.map as WebMap;
-  const portalItem = map.portalItem;
+  // const map = viewElement.map as WebMap;
+  // const portalItem = map.portalItem;
   // const title = portalItem?.title ? portalItem.title : "Atlanta Routefinder";
   // const description = portalItem?.description ? portalItem.description : "ArcGIS Maps SDK for JavaScript template";
 
