@@ -38,6 +38,7 @@ console.log(data);
 import RouteLayer from "@arcgis/core/layers/RouteLayer.js";
 
 const viewElement = document.querySelector("arcgis-map");
+const calciteNavLogo = document.querySelector("calcite-navigation-logo");
 const directionsElement = document.querySelector("arcgis-directions");
 
 // create a RouteLayer from a portal item
@@ -51,9 +52,13 @@ viewElement?.addEventListener("arcgisViewReadyChange", () => {
   // Use metadata from the Web Map to populate the header
   // const map = viewElement.map as WebMap;
   // const portalItem = map.portalItem;
-  const title = "Atlanta Routefinder";
-  title ? (document.title = title) : null;
-  const description =  "ArcGIS Maps SDK for JavaScript template";
+  document.title = "Atlanta Routefinder";
+  const description = "ArcGIS Maps SDK for JavaScript template";
+
+    if (calciteNavLogo) {
+    calciteNavLogo.heading = "Atlanta Routefinder";
+    calciteNavLogo.description = description;
+  }
 
   MARTAroutes.load().then(() => {
     if (directionsElement?.view?.map) {
