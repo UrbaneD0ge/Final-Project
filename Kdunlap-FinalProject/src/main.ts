@@ -27,48 +27,35 @@ import Point from "@arcgis/core/geometry/Point.js";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
 import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol.js";
 import type WebMap from "@arcgis/core/WebMap";
+import RouteLayer from "@arcgis/core/layers/RouteLayer.js";
 
 const viewElement = document.querySelector("arcgis-map");
-const calciteNavLogo = document.querySelector("calcite-navigation-logo");
+const directionsElement = document.querySelector("arcgis-directions");
+
+// create a RouteLayer from a portal item
+const MARTAroutes = new RouteLayer({
+  portalItem: {
+    // autocasts as new PortalItem()
+    id: "19683b89f5e74a69afcda912c96ff1a0", // MARTA Routes
+  },
+});
 
 viewElement?.addEventListener("arcgisViewReadyChange", () => {
   // Use metadata from the Web Map to populate the header
   const map = viewElement.map as WebMap;
   const portalItem = map.portalItem;
-  const title = portalItem?.title ? portalItem.title : "A web map";
+  // const title = portalItem?.title ? portalItem.title : "Atlanta Routefinder";
   // const description = portalItem?.description ? portalItem.description : "ArcGIS Maps SDK for JavaScript template";
 
-  if (calciteNavLogo) {
-    calciteNavLogo.heading = title;
-    // calciteNavLogo.description = description;
-  }
+  MARTAroutes.load().then(() => {
+    if (directionsElement?.view?.map) {
+      directionsElement.view.map.add(MARTAroutes);
+    }
+  });
 
   // Define a point geometry
   // const point = new Point({
   //   longitude: -98.38,
   //   latitude: 38.34,
   // });
-
-  // Create an outline for the marker symbol
-  // const outline = new SimpleLineSymbol({
-  //   color: "white",
-  //   width: 2,
-  // });
-
-  // Create a symbol for drawing the point
-  // const symbol = new SimpleMarkerSymbol({
-  //   style: "triangle",
-  //   size: 20,
-  //   color: "red",
-  //   outline,
-  // });
-
-  // Create a graphic and add the geometry and symbol to it
-  // const pointGraphic = new Graphic({
-  //   geometry: point,
-  //   symbol,
-  // });
-
-  // Add a graphic to demonstrate custom visualizations beyond Web Map content
-  // viewElement.graphics.add(pointGraphic);
 });
