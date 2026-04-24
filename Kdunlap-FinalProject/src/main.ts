@@ -1,4 +1,5 @@
 import "./style.css";
+// const apiKey = process.env.API_KEY;
 
 // Optional: If you're loading secure web maps
 import { configureOAuth } from "./auth/configureOAuth";
@@ -20,13 +21,20 @@ import "@esri/calcite-components/components/calcite-shell";
 import "@esri/calcite-components/components/calcite-navigation";
 import "@esri/calcite-components/components/calcite-navigation-logo";
 
+// fetch MARTA updates and pass to the page
+
+const response = fetch(
+  "/api",
+);
+const data = response
+console.log(data);
 
 // Import modules and types from the SDK's core API
-import Graphic from "@arcgis/core/Graphic.js";
-import Point from "@arcgis/core/geometry/Point.js";
-import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
-import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol.js";
-import type WebMap from "@arcgis/core/WebMap";
+// import Graphic from "@arcgis/core/Graphic.js";
+// import Point from "@arcgis/core/geometry/Point.js";
+// import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
+// import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol.js";
+// import type WebMap from "@arcgis/core/WebMap";
 import RouteLayer from "@arcgis/core/layers/RouteLayer.js";
 
 const viewElement = document.querySelector("arcgis-map");
@@ -35,7 +43,7 @@ const directionsElement = document.querySelector("arcgis-directions");
 // create a RouteLayer from a portal item
 const MARTAroutes = new RouteLayer({
   portalItem: {
-    id: "f0337180b2374f868ba02dd920a1ac10"
+    id: "19683b89f5e74a69afcda912c96ff1a0"
   },
 });
 
@@ -43,8 +51,9 @@ viewElement?.addEventListener("arcgisViewReadyChange", () => {
   // Use metadata from the Web Map to populate the header
   // const map = viewElement.map as WebMap;
   // const portalItem = map.portalItem;
-  // const title = portalItem?.title ? portalItem.title : "Atlanta Routefinder";
-  // const description = portalItem?.description ? portalItem.description : "ArcGIS Maps SDK for JavaScript template";
+  const title = "Atlanta Routefinder";
+  title ? (document.title = title) : null;
+  const description =  "ArcGIS Maps SDK for JavaScript template";
 
   MARTAroutes.load().then(() => {
     if (directionsElement?.view?.map) {
