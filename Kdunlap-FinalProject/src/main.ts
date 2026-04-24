@@ -22,11 +22,11 @@ import "@esri/calcite-components/components/calcite-navigation-logo";
 
 
 // Import modules and types from the SDK's core API
-import Graphic from "@arcgis/core/Graphic.js";
-import Point from "@arcgis/core/geometry/Point.js";
-import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
-import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol.js";
-import type WebMap from "@arcgis/core/WebMap";
+// import Graphic from "@arcgis/core/Graphic.js";
+// import Point from "@arcgis/core/geometry/Point.js";
+// import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol.js";
+// import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol.js";
+// import type WebMap from "@arcgis/core/WebMap";
 import RouteLayer from "@arcgis/core/layers/RouteLayer.js";
 
 const viewElement = document.querySelector("arcgis-map");
@@ -34,7 +34,9 @@ const directionsElement = document.querySelector("arcgis-directions");
 
 // create a RouteLayer from a portal item
 const MARTAroutes = new RouteLayer({
-  id: "19683b89f5e74a69afcda912c96ff1a0"
+  portalItem: {
+    id: "f0337180b2374f868ba02dd920a1ac10"
+  },
 });
 
 viewElement?.addEventListener("arcgisViewReadyChange", () => {
